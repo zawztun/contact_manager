@@ -11,7 +11,9 @@ import './App.css'
 
 const App = () => {
   //const LOCAL_STORAGE_KEY =  'contacts'
-  const [contacts, setContacts] = useState([])
+  const [contacts, setContacts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([])
 
 
   const apiContacts = async ()=> {
@@ -44,13 +46,29 @@ const App = () => {
     }))
 }
 
+const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if(searchTerm !== ''){
+      const newContactList = contacts.filter((contact)=>{
+        return Object.values(contact)
+        .join('')
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(newContactList)
+    }else{
+      setSearchResults(contacts)
+    }
+};
+
 
   useEffect(()=>{
-    const getAllContacts = async ()=> {
+      const getAllContacts = async ()=> {
       const allcontacts = await apiContacts();
       if(allcontacts) setContacts(allcontacts)
     }
     getAllContacts()
+    
     // const reContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     // if(reContacts) setContacts(reContacts)
   },[])
@@ -63,13 +81,18 @@ const App = () => {
         <Header/>
         <Switch>
             <Route exact path = '/add' 
-                  render = {(props)=> (
+                   render = {(props)=> (
                     <AddContact {...props} addContactHandler = {addContactHandler}/>
                   )}
             />
             <Route exact path = '/'  
                     render = {(props)=>(
-                      <ContactList {...props} contacts = {contacts} getContactId = {removeContactHandler}/>
+                      <ContactList {...props} 
+                      contacts = {searchTerm.length <1 ? contacts : searchResults} 
+                      getContactId = {removeContactHandler}
+                      term = {searchTerm}
+                      searchKeyWord = {searchHandler}
+                      />
                     )}
             />
               <Route exact path = '/edit'  

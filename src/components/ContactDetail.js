@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import avatar from '../images/avatar.jpg'
 
 const ContactDetail = (props) => {
-   const {name, email} = props.location.state.contact;
+   const {name, email,address} = props.location.state.contact;
     return (
         <div className="ui link cards">
             <div className="card">
@@ -13,6 +13,7 @@ const ContactDetail = (props) => {
                 <div className="content">
                     <div className="header">{name}</div>
                     <div className="description">{email}</div>
+                    <div className = "description">{address}</div>
                 </div>
                 <div className = 'center'>
                 <Link to = '/'>

@@ -3,11 +3,12 @@ import React, { Component } from 'react'
 class EditContact extends Component {
     constructor(props){
         super(props)
-        const {id, name, email} = props.location.state.contact;
+        const {id, name, email,address} = props.location.state.contact;
         this.state= {
             id,
             name,
-            email
+            email,
+            address,
         }
     }
     
@@ -18,7 +19,7 @@ class EditContact extends Component {
             return;
         }
         this.props.updateContactHandler(this.state)
-        this.setState({name:'', email:''});
+        this.setState({name:'', email:'',address:''});
             console.log(this.props)
             this.props.history.push('/')   
     }
@@ -47,6 +48,18 @@ class EditContact extends Component {
                             placeholder= "Email"
                             value = {this.state.email}
                             onChange = {e => this.setState({email: e.target.value})}
+                        />
+                    </div>
+
+
+                    <div className = 'field'>
+                        <label>Address</label>
+                        <input
+                            type= 'text'
+                            name = 'address'
+                            placeholder= "street Address, City, State, Zip"
+                            value = {this.state.address}
+                            onChange = {e => this.setState({address: e.target.value})}
                         />
                     </div>
                     <button className = 'ui blue button'>Update</button>

@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 class AddContact extends Component {
     state = {
         name:'',
-        email:''
+        email:'',
+        address:''
     }
     
     add = (e) => {
@@ -42,6 +43,28 @@ class AddContact extends Component {
                             placeholder= "Email"
                             value = {this.state.email}
                             onChange = {e => this.setState({email: e.target.value})}
+                        />
+                    </div>
+
+                    <div className = 'field'>
+                        <label>Email</label>
+                        <input
+                            type= 'text'
+                            name = 'email'
+                            placeholder= "Email"
+                            value = {this.state.email}
+                            onChange = {e => this.setState({address: e.target.value})}
+                        />
+                    </div>
+
+                    <div className = 'field'>
+                        <label>Address</label>
+                        <input
+                            type= 'text'
+                            name = 'address'
+                            placeholder= "street Address, City, State, Zip"
+                            value = {this.state.address}
+                            onChange = {e => this.setState({address: e.target.value})}
                         />
                     </div>
                     <button className = 'ui blue button'>Submit</button>
