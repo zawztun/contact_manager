@@ -21,7 +21,7 @@ class AddContact extends Component {
 
     render() {
         return (
-            <div>
+            <div className ='ui main'>
                 <h2>Add Contact</h2>
                 <form className = 'ui form' onSubmit={this.add}>
                     <div className = 'field'>
@@ -43,17 +43,6 @@ class AddContact extends Component {
                             placeholder= "Email"
                             value = {this.state.email}
                             onChange = {e => this.setState({email: e.target.value})}
-                        />
-                    </div>
-
-                    <div className = 'field'>
-                        <label>Email</label>
-                        <input
-                            type= 'text'
-                            name = 'email'
-                            placeholder= "Email"
-                            value = {this.state.email}
-                            onChange = {e => this.setState({address: e.target.value})}
                         />
                     </div>
 

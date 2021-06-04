@@ -16,9 +16,9 @@ const ContactDetail = (props) => {
                     <div className = "description">{address}</div>
                 </div>
                 <div className = 'center'>
-                <Link to = '/'>
-                <button className = ' ui button blue center'>Go back to Contact List</button>
-                </Link>
+                    <Link to = '/'>
+                        <button className = ' ui button blue center'>Go back to Contact List</button>
+                    </Link>
                 </div>
             </div>
         </div>

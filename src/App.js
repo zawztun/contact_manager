@@ -44,23 +44,22 @@ const App = () => {
       const {id} = response.data
       return contact.id === id ? {...response.data} : contact;
     }))
-}
+  }
 
-const searchHandler = (searchTerm) => {
-    setSearchTerm(searchTerm);
-    if(searchTerm !== ''){
-      const newContactList = contacts.filter((contact)=>{
-        return Object.values(contact)
-        .join('')
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      });
-      setSearchResults(newContactList)
-    }else{
-      setSearchResults(contacts)
-    }
-};
-
+  const searchHandler = (searchTerm) => {
+        setSearchTerm(searchTerm);
+      if(searchTerm !== ''){
+        const newContactList = contacts.filter((contact)=>{
+          return Object.values(contact)
+          .join('')
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+        });
+        setSearchResults(newContactList)
+      }else{
+        setSearchResults(contacts)
+      }
+  };
 
   useEffect(()=>{
       const getAllContacts = async ()=> {
@@ -88,10 +87,10 @@ const searchHandler = (searchTerm) => {
             <Route exact path = '/'  
                     render = {(props)=>(
                       <ContactList {...props} 
-                      contacts = {searchTerm.length <1 ? contacts : searchResults} 
-                      getContactId = {removeContactHandler}
-                      term = {searchTerm}
-                      searchKeyWord = {searchHandler}
+                        contacts = {searchTerm.length <1 ? contacts : searchResults} 
+                        getContactId = {removeContactHandler}
+                        term = {searchTerm}
+                        searchKeyWord = {searchHandler}
                       />
                     )}
             />
